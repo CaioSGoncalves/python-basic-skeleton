@@ -1,0 +1,6 @@
+services:
+    python-basic-skeleton:
+        image: python-basic-skeleton:latest
+        container_name: python-basic-skeleton
+        env_file:
+            - .env
