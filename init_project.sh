@@ -33,8 +33,11 @@ EOF
 
 # Create src/main.py
 cat <<EOF > src/main.py
+from config import settings
+
 def main():
     print("MAIN!")
+    print(settings.APP_ENV)
 
 if __name__ == "__main__":
     main()
@@ -51,6 +54,7 @@ class Settings(BaseSettings):
         
         class Config:
                 env_file = ".env"
+settings = Settings()
 EOF
 
 # Create Makefile
@@ -84,6 +88,7 @@ uv init
 uv add --dev ruff ipykernel
 uv add pydantic pydantic-settings
 rm hello.py
+ruff format
 
 # Create README.md
 cat <<EOF > README.md
